@@ -1,17 +1,26 @@
 ﻿using Biblioteca.Models.DTO;
 
+// Banco de dados fake
+
 namespace Biblioteca.Models.Repositories
 {
     public static class ContextDataFake
     {
-        public static List<LivroDTO> Livros;
+        public static List<LivroDTO> Livros; // Lista de livros
+        // static é um objeto que não será instanciado
 
+        // Construtor para instanciar o livro
+        /* 
+          Método padrão da classe, executado quando o objeto é instanciado 
+          Explicação sobre construtores - https://pt.stackoverflow.com/questions/73530/para-que-serve-um-construtor
+         */
         static ContextDataFake()
         {
             Livros = new List<LivroDTO>();
             InitializeData();
         }
 
+        // Dados dos livros
         private static void InitializeData()
         {
             var livro01 = new LivroDTO("Teste01", "Claudio", "DotNet", DateTime.Now, "122321");
