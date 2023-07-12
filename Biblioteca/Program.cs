@@ -1,7 +1,17 @@
+using Biblioteca.Models.Contracts.Repositories;
+using Biblioteca.Models.Contracts.Services;
+using Biblioteca.Models.Repositories;
+using Biblioteca.Models.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+// Add Serviços e repositórios (injeção de dependência)
+builder.Services.AddScoped<ILivroRepository, LivroRrepositories>();
+builder.Services.AddScoped<ILivroService, LivroServices>();
 
 var app = builder.Build();
 
