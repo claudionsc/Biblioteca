@@ -7,7 +7,10 @@ namespace Biblioteca.Models.Repositories
     {
         public List<LivroDTO> Listar()
         {
-            throw new NotImplementedException();
+            var livros = ContextDataFake.Livros;
+            return livros
+                .OrderBy(n => n.Nome)
+                .ToList();
         }
     }
 }
