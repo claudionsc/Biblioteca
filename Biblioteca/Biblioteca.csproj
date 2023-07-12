@@ -6,4 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\LivroControler\**" />
+    <Content Remove="Views\LivroControler\**" />
+    <EmbeddedResource Remove="Views\LivroControler\**" />
+    <None Remove="Views\LivroControler\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\LivroControler.cs" />
+    <Compile Remove="Models\Repositories\Livrorepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Entidades\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
+  </ItemGroup>
+
 </Project>
