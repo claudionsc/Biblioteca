@@ -9,6 +9,8 @@ namespace Biblioteca.Models.Contracts.Repositories
 {
     public interface ILivroRepository
     {
+        void Cadastrar(LivroDTO livro); // metodo sem retorno que cadastra um livro
+
         List<LivroDTO> Listar();
     }
 }

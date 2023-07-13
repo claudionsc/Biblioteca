@@ -1,9 +1,10 @@
-﻿namespace Biblioteca.Models.DTO
+﻿using Biblioteca.Models.Entidades;
+
+namespace Biblioteca.Models.DTO
 {
-    public class LivroDTO
+    public class LivroDTO : EntidadeBase // herança da entidade base, Guid
     {
         // Propriedades
-        public string ID { get; set; }
         public string Nome { get; set; }
         public string Autor { get; set; }
         public string Editora { get; set; }
@@ -11,6 +12,11 @@
         public string ISBN { get; set; }
 
         // Construtores
+        public LivroDTO() // necessário para trabalhar com formulários
+        {
+            
+        }
+
         public LivroDTO(
             string id, string nome, string autor, string editora, 
             DateTime dataPublicacao, string isbn

@@ -18,6 +18,12 @@ namespace Biblioteca.Models.Repositories
 {
     public class LivroRrepositories: ILivroRepository
     {
+        // implementação dos métodos da entidade
+        public void Cadastrar(LivroDTO livro) 
+        {
+            ContextDataFake.Livros.Add(livro);
+        }
+
         public List<LivroDTO> Listar()
         {
             var livros = ContextDataFake.Livros;

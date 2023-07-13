@@ -1,4 +1,5 @@
 ﻿using Biblioteca.Models.Contracts.Services;
+using Biblioteca.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 // O controller acessa o serviço
@@ -29,6 +30,28 @@ namespace Biblioteca.Controllers
             {
                var livros = _livroService.Listar();
                 return View(livros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IActionResult Create() // Get
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken] // validar controlador, previne ataque csrf
+        // Bind serve para agrupar quais os campos serão entendidos (nesse caso salvos) pela action
+        public IActionResult Create([Bind("Nome,Autor,Editora,DataPublicacao,ISBN")] LivroDTO livro) // Post
+        {
+            try
+            {
+                _livroService.Cadastrar(livro);
+                return RedirectToAction("List");
+
             }
             catch (Exception ex)
             {

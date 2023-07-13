@@ -29,6 +29,19 @@ namespace Biblioteca.Models.Services
             // Objeto criado será recebido no momento da instância desse serviço
         }
 
+        // implementação dos métodos da entidade
+
+        public void Cadastrar(LivroDTO livro)
+        {
+            try
+            {
+                 _livroRepository.Cadastrar(livro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public List<LivroDTO> Listar()
         {
