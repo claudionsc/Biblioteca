@@ -10,5 +10,6 @@ namespace Biblioteca.Models.Contracts.Services
         LivroDTO PesquisarPorID(string id);
 
         void Atualizar(LivroDTO livro);
+
     }
 }

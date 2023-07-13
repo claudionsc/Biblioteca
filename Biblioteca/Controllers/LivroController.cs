@@ -87,7 +87,7 @@ namespace Biblioteca.Controllers
             try
             {
                 _livroService.Atualizar(livro);
-                return RedirectToAction("List");
+                RedirectToAction("List");
             }
             catch(Exception ex) 
             {
@@ -95,6 +95,23 @@ namespace Biblioteca.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var livro = _livroService.PesquisarPorID(id);
+            if (livro == null)
+            {
+                return NotFound();
+            }
+
+            return View(livro);
         }
     }
 }
