@@ -18,6 +18,20 @@ namespace Biblioteca.Models.Repositories
 {
     public class LivroRrepositories: ILivroRepository
     {
+        public void Atualizar(LivroDTO livro)
+        {
+            var pesquisa = PesquisarPorID(livro.ID);
+            ContextDataFake.Livros.Remove(pesquisa);
+
+            pesquisa.Nome = livro.Nome;
+            pesquisa.Autor = livro.Autor;
+            pesquisa.Editora = livro.Editora;
+            pesquisa.DataPublicacao = livro.DataPublicacao;
+            pesquisa.ISBN = livro.ISBN;
+
+            Cadastrar(pesquisa);
+        }
+
         // implementação dos métodos da entidade
         public void Cadastrar(LivroDTO livro) 
         {
@@ -30,6 +44,12 @@ namespace Biblioteca.Models.Repositories
             return livros
                 .OrderBy(n => n.Nome)
                 .ToList();
+        }
+
+        public LivroDTO PesquisarPorID(string id)
+        {
+            var livro = ContextDataFake.Livros.FirstOrDefault(n => n.ID == id);
+            return livro;
         }
     }
 }

@@ -29,6 +29,18 @@ namespace Biblioteca.Models.Services
             // Objeto criado será recebido no momento da instância desse serviço
         }
 
+        public void Atualizar(LivroDTO livro)
+        {
+            try
+            {
+                _livroRepository.Atualizar(livro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         // implementação dos métodos da entidade
 
         public void Cadastrar(LivroDTO livro)
@@ -55,6 +67,18 @@ namespace Biblioteca.Models.Services
             }
 
 
+        }
+
+        public LivroDTO PesquisarPorID(string id)
+        {
+            try
+            {
+                return _livroRepository.PesquisarPorID(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

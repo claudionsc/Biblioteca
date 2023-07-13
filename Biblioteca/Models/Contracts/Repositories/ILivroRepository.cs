@@ -12,5 +12,11 @@ namespace Biblioteca.Models.Contracts.Repositories
         void Cadastrar(LivroDTO livro); // metodo sem retorno que cadastra um livro
 
         List<LivroDTO> Listar();
+
+        LivroDTO PesquisarPorID(string id);
+
+        void Atualizar(LivroDTO livro);
+
+
     }
 }
