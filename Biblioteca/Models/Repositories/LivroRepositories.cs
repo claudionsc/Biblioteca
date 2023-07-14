@@ -1,4 +1,5 @@
-﻿using Biblioteca.Models.Contracts.Repositories;
+﻿using Biblioteca.Data;
+using Biblioteca.Models.Contracts.Repositories;
 using Biblioteca.Models.DTO;
 
 // Acesso às informações do bando de dados
@@ -16,12 +17,20 @@ Sobre repository - https://www.linkedin.com/pulse/voc%C3%AA-j%C3%A1-ouviu-falar-
 
 namespace Biblioteca.Models.Repositories
 {
-    public class LivroRrepositories: ILivroRepository
+    public class LivroRepositories: ILivroRepository
     {
+
+        private readonly BibliotecaContext _context;
+
+        public LivroRepositories(BibliotecaContext context)
+        {
+            _context = context;
+        }
+
         public void Atualizar(LivroDTO livro)
         {
             var pesquisa = PesquisarPorID(livro.ID);
-            ContextDataFake.Livros.Remove(pesquisa);
+            _context.Livros.Remove(pesquisa);
 
             pesquisa.Nome = livro.Nome;
             pesquisa.Autor = livro.Autor;
@@ -35,14 +44,14 @@ namespace Biblioteca.Models.Repositories
         // implementação dos métodos da entidade
         public void Cadastrar(LivroDTO livro) 
         {
-            ContextDataFake.Livros.Add(livro);
+            _context.Livros.Add(livro);
         }
 
        
 
         public List<LivroDTO> Listar()
         {
-            var livros = ContextDataFake.Livros;
+            var livros = _context.Livros;
             return livros
                 .OrderBy(n => n.Nome)
                 .ToList();
@@ -50,7 +59,7 @@ namespace Biblioteca.Models.Repositories
 
         public LivroDTO PesquisarPorID(string id)
         {
-            var livro = ContextDataFake.Livros.FirstOrDefault(n => n.ID == id);
+            var livro = _context.Livros.FirstOrDefault(n => n.ID == id);
             return livro;
         }
 
@@ -58,7 +67,7 @@ namespace Biblioteca.Models.Repositories
         public void Deletar(string id)
         {
             var pesquisa = PesquisarPorID(id);
-            ContextDataFake.Livros.Remove(pesquisa);
+            _context.Livros.Remove(pesquisa);
         }
     }
 }

@@ -1,17 +1,22 @@
-using Biblioteca.Models.Contracts.Repositories;
+ï»¿using Biblioteca.Models.Contracts.Repositories;
 using Biblioteca.Models.Contracts.Services;
 using Biblioteca.Models.Repositories;
 using Biblioteca.Models.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Biblioteca.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BibliotecaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BibliotecaContext") ?? throw new InvalidOperationException("Connection string 'BibliotecaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 
-// Add Serviços e repositórios (injeção de dependência)
-// Definição do serviço e do repositório, da interface e de quem implementa a interface
-builder.Services.AddScoped<ILivroRepository, LivroRrepositories>();
+// Add Serviï¿½os e repositï¿½rios (injeï¿½ï¿½o de dependï¿½ncia)
+// Definiï¿½ï¿½o do serviï¿½o e do repositï¿½rio, da interface e de quem implementa a interface
+builder.Services.AddScoped<ILivroRepository, LivroRepositories>();
 builder.Services.AddScoped<ILivroService, LivroServices>();
 
 var app = builder.Build();
