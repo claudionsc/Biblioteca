@@ -1,4 +1,5 @@
 ﻿using Biblioteca.Models.Entidades;
+using System.ComponentModel.DataAnnotations;
 
 namespace Biblioteca.Models.DTO
 {
@@ -8,6 +9,9 @@ namespace Biblioteca.Models.DTO
         public string Nome { get; set; }
         public string Autor { get; set; }
         public string Editora { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Data de publicação")]
         public DateTime DataPublicacao { get; set; }
         public string ISBN { get; set; }
 
