@@ -11,5 +11,7 @@ namespace Biblioteca.Models.Contracts.Services
 
         void Atualizar(LivroDTO livro);
 
+        void Deletar(string id);
+
     }
 }

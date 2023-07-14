@@ -47,7 +47,7 @@ namespace Biblioteca.Models.Services
         {
             try
             {
-                 _livroRepository.Cadastrar(livro);
+                _livroRepository.Cadastrar(livro);
             }
             catch (Exception ex)
             {
@@ -55,13 +55,14 @@ namespace Biblioteca.Models.Services
             }
         }
 
+
         public List<LivroDTO> Listar()
         {
             try
             {
                 return _livroRepository.Listar();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -74,6 +75,17 @@ namespace Biblioteca.Models.Services
             try
             {
                 return _livroRepository.PesquisarPorID(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void Deletar(string id)
+        {
+            try
+            {
+                _livroRepository.Deletar(id);
             }
             catch (Exception ex)
             {

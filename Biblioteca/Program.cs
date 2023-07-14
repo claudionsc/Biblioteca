@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 
 
 // Add Serviços e repositórios (injeção de dependência)
+// Definição do serviço e do repositório, da interface e de quem implementa a interface
 builder.Services.AddScoped<ILivroRepository, LivroRrepositories>();
 builder.Services.AddScoped<ILivroService, LivroServices>();
 

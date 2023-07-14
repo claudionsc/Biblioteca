@@ -113,5 +113,31 @@ namespace Biblioteca.Controllers
 
             return View(livro);
         }
+
+        public IActionResult Delete(string? id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var livro = _livroService.PesquisarPorID(id);
+            if (livro == null)
+            {
+                return NotFound();
+            }
+
+            return View(livro);
+        }
+        
+        [HttpPost]
+        public IActionResult Delete([Bind("ID,Nome,Autor,Editora,DataPublicacao,ISBN")] LivroDTO livro)
+        {
+          
+
+            _livroService.Deletar(livro.ID);
+            return RedirectToAction("List");
+        }
+
     }
 }

@@ -38,6 +38,8 @@ namespace Biblioteca.Models.Repositories
             ContextDataFake.Livros.Add(livro);
         }
 
+       
+
         public List<LivroDTO> Listar()
         {
             var livros = ContextDataFake.Livros;
@@ -50,6 +52,13 @@ namespace Biblioteca.Models.Repositories
         {
             var livro = ContextDataFake.Livros.FirstOrDefault(n => n.ID == id);
             return livro;
+        }
+
+
+        public void Deletar(string id)
+        {
+            var pesquisa = PesquisarPorID(id);
+            ContextDataFake.Livros.Remove(pesquisa);
         }
     }
 }
