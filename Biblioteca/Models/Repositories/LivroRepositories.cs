@@ -57,7 +57,7 @@ namespace Biblioteca.Models.Repositories
                 .ToList();
         }
 
-        public LivroDTO PesquisarPorID(string id)
+        public  LivroDTO PesquisarPorID(string id)
         {
             var livro = _context.Livros.FirstOrDefault(n => n.ID == id);
             return livro;
@@ -68,6 +68,8 @@ namespace Biblioteca.Models.Repositories
         {
             var pesquisa = PesquisarPorID(id);
             _context.Livros.Remove(pesquisa);
+
+
         }
     }
 }

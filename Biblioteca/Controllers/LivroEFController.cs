@@ -16,13 +16,19 @@ namespace Biblioteca.Controllers
         // Acesso ao serviço
 
         private readonly ILivroService _livroService;
+        private readonly BibliotecaContext _context;
 
         //Construtor
         // injeção de dependencia, lista os livros assim que o controller é instanciado
-        public LivroEFController(ILivroService livroService)
+        public LivroEFController(ILivroService livroService, BibliotecaContext context)
         {
             _livroService = livroService;
+            _context = context;
         }
+
+
+        
+        
 
         public IActionResult Index()
         {
@@ -81,7 +87,7 @@ namespace Biblioteca.Controllers
             return View(livro);
         }
 
-        [HttpPost]
+        [HttpPut]
         [ValidateAntiForgeryToken]
         public IActionResult Edit([Bind("ID,Nome,Autor,Editora,DataPublicacao,ISBN")] LivroDTO livro)
         {
@@ -137,11 +143,13 @@ namespace Biblioteca.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete([Bind("ID,Nome,Autor,Editora,DataPublicacao,ISBN")] LivroDTO livro)
+        public async Task<IActionResult> Delete([Bind("ID,Nome,Autor,Editora,DataPublicacao,ISBN")] LivroDTO livro)
         {
 
 
             _livroService.Deletar(livro.ID);
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("List");
         }
     }
